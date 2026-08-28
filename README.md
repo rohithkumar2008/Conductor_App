@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+this is the one of the Application it will use for condutor useage only 
+
+powered by QURBAY
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
