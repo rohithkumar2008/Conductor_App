@@ -1,4 +1,4 @@
-# conductor_app
+# Conductor App
 
 A new Flutter project.
 
