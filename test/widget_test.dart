@@ -1,24 +1,24 @@
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:conductor_app/main.dart';
+import 'package:conductor_app/pages/home_page.dart';
+import 'package:conductor_app/widgets/lively_bottom_nav_bar.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    
+  testWidgets('App smoke test - verifies MyApp launches', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
+    expect(find.byType(MaterialApp), findsOneWidget);
+  });
 
-    
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-   
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Home page smoke test - verifies LivelyBottomNavBar presence', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: HomePage(),
+      ),
+    );
+    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(LivelyBottomNavBar), findsOneWidget);
   });
 }
+

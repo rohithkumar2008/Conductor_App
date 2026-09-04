@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:ui' show ImageFilter;
-import 'home_page.dart';
-import 'live_tracking_page.dart';
-import 'settings_page.dart';
 import '../services/translation_service.dart';
+import '../widgets/lively_bottom_nav_bar.dart';
 
 class PassengerCountPage extends StatefulWidget {
   const PassengerCountPage({super.key});
@@ -110,14 +107,6 @@ class _PassengerCountPageState extends State<PassengerCountPage> {
       return time.replaceAll('mins ago', 'நிமிடங்களுக்கு முன்பு');
     }
     return time;
-  }
-
-  Widget _buildNavItem(IconData icon, bool isActive) {
-    return Icon(
-      icon,
-      size: 32,
-      color: isActive ? Colors.black : Colors.black87,
-    );
   }
 
   @override
@@ -427,63 +416,10 @@ class _PassengerCountPageState extends State<PassengerCountPage> {
               ],
             ),
 
-            // ── Bottom Navigation Bar (Frosted Glassmorphism) ──
-            Align(
+            // ── Lively Animated Bottom Navigation Bar ──
+            const Align(
               alignment: Alignment.bottomCenter,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                  child: Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.8),
-                      border: Border(
-                        top: BorderSide(
-                          color: Colors.black.withValues(alpha: 0.08),
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TactileButton(
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => const HomePage()),
-                            );
-                          },
-                          child: _buildNavItem(Icons.home_outlined, false),
-                        ),
-                        TactileButton(
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => const LiveTrackingPage()),
-                            );
-                          },
-                          child: _buildNavItem(Icons.directions_bus_outlined, false),
-                        ),
-                        TactileButton(
-                          onTap: () {},
-                          child: _buildNavItem(Icons.assignment_outlined, true),
-                        ),
-                        TactileButton(
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(builder: (context) => const SettingsPage()),
-                            );
-                          },
-                          child: _buildNavItem(Icons.settings_outlined, false),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              child: LivelyBottomNavBar(currentIndex: 2),
             ),
           ],
         ),
